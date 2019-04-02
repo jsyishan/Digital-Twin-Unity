@@ -55,6 +55,7 @@ ModelImporter:
     4300008: "\u51F8\u53F0-\u62C9\u4F388"
     4300010: "\u955C\u541110"
     4300012: "\u51F8\u53F0-\u62C9\u4F383"
+    11100000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -113,7 +114,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
@@ -132,7 +133,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 1
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

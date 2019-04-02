@@ -45,6 +45,5 @@ public class CameraFollow : MonoBehaviour {
 	
 		// Always look at the target
 		transform.LookAt(target);
-
 	}
 }

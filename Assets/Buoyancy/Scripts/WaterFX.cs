@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace WaterBuoyancy
+namespace UnityStandardAssets.Water
 {
     [ExecuteInEditMode] // Make water live-update even when not in play mode
-    public class WaterFX : MonoBehaviour
+    public class Water : MonoBehaviour
     {
         public enum WaterMode
         {
@@ -14,23 +14,14 @@ namespace WaterBuoyancy
             Refractive = 2,
         };
 
-        [SerializeField]
-        private WaterMode waterMode = WaterMode.Refractive;
 
-        [SerializeField]
-        private bool disablePixelLights = true;
+        public WaterMode waterMode = WaterMode.Refractive;
+        public bool disablePixelLights = true;
+        public int textureSize = 256;
+        public float clipPlaneOffset = 0.07f;
+        public LayerMask reflectLayers = -1;
+        public LayerMask refractLayers = -1;
 
-        [SerializeField]
-        private int textureSize = 256;
-
-        [SerializeField]
-        private float clipPlaneOffset = 0.07f;
-
-        [SerializeField]
-        private LayerMask reflectLayers = -1;
-
-        [SerializeField]
-        private LayerMask refractLayers = -1;
 
         private Dictionary<Camera, Camera> m_ReflectionCameras = new Dictionary<Camera, Camera>(); // Camera -> Camera table
         private Dictionary<Camera, Camera> m_RefractionCameras = new Dictionary<Camera, Camera>(); // Camera -> Camera table
@@ -40,6 +31,7 @@ namespace WaterBuoyancy
         private int m_OldReflectionTextureSize;
         private int m_OldRefractionTextureSize;
         private static bool s_InsideWater;
+
 
         // This is called when it's known that the object will be rendered by some
         // camera. We render reflections / refractions and do other updates here.
@@ -107,15 +99,19 @@ namespace WaterBuoyancy
                 Vector4 clipPlane = CameraSpacePlane(reflectionCamera, pos, normal, 1.0f);
                 reflectionCamera.projectionMatrix = cam.CalculateObliqueMatrix(clipPlane);
 
-                reflectionCamera.cullingMask = ~(1 << 4) & reflectLayers.value; // never render water layer
+				// Set custom culling matrix from the current camera
+				reflectionCamera.cullingMatrix = cam.projectionMatrix * cam.worldToCameraMatrix;
+
+				reflectionCamera.cullingMask = ~(1 << 4) & reflectLayers.value; // never render water layer
                 reflectionCamera.targetTexture = m_ReflectionTexture;
-                GL.invertCulling = true;
+                bool oldCulling = GL.invertCulling;
+                GL.invertCulling = !oldCulling;
                 reflectionCamera.transform.position = newpos;
                 Vector3 euler = cam.transform.eulerAngles;
                 reflectionCamera.transform.eulerAngles = new Vector3(-euler.x, euler.y, euler.z);
                 reflectionCamera.Render();
                 reflectionCamera.transform.position = oldpos;
-                GL.invertCulling = false;
+                GL.invertCulling = oldCulling;
                 GetComponent<Renderer>().sharedMaterial.SetTexture("_ReflectionTex", m_ReflectionTexture);
             }
 
@@ -129,7 +125,10 @@ namespace WaterBuoyancy
                 Vector4 clipPlane = CameraSpacePlane(refractionCamera, pos, normal, -1.0f);
                 refractionCamera.projectionMatrix = cam.CalculateObliqueMatrix(clipPlane);
 
-                refractionCamera.cullingMask = ~(1 << 4) & refractLayers.value; // never render water layer
+				// Set custom culling matrix from the current camera
+				refractionCamera.cullingMatrix = cam.projectionMatrix * cam.worldToCameraMatrix;
+
+				refractionCamera.cullingMask = ~(1 << 4) & refractLayers.value; // never render water layer
                 refractionCamera.targetTexture = m_RefractionTexture;
                 refractionCamera.transform.position = cam.transform.position;
                 refractionCamera.transform.rotation = cam.transform.rotation;
@@ -343,7 +342,7 @@ namespace WaterBuoyancy
 
         WaterMode FindHardwareWaterSupport()
         {
-            if (!SystemInfo.supportsRenderTextures || !GetComponent<Renderer>())
+            if (!GetComponent<Renderer>())
             {
                 return WaterMode.Simple;
             }
@@ -381,19 +380,19 @@ namespace WaterBuoyancy
         static void CalculateReflectionMatrix(ref Matrix4x4 reflectionMat, Vector4 plane)
         {
             reflectionMat.m00 = (1F - 2F * plane[0] * plane[0]);
-            reflectionMat.m01 = (-2F * plane[0] * plane[1]);
-            reflectionMat.m02 = (-2F * plane[0] * plane[2]);
-            reflectionMat.m03 = (-2F * plane[3] * plane[0]);
+            reflectionMat.m01 = (- 2F * plane[0] * plane[1]);
+            reflectionMat.m02 = (- 2F * plane[0] * plane[2]);
+            reflectionMat.m03 = (- 2F * plane[3] * plane[0]);
 
-            reflectionMat.m10 = (-2F * plane[1] * plane[0]);
+            reflectionMat.m10 = (- 2F * plane[1] * plane[0]);
             reflectionMat.m11 = (1F - 2F * plane[1] * plane[1]);
-            reflectionMat.m12 = (-2F * plane[1] * plane[2]);
-            reflectionMat.m13 = (-2F * plane[3] * plane[1]);
+            reflectionMat.m12 = (- 2F * plane[1] * plane[2]);
+            reflectionMat.m13 = (- 2F * plane[3] * plane[1]);
 
-            reflectionMat.m20 = (-2F * plane[2] * plane[0]);
-            reflectionMat.m21 = (-2F * plane[2] * plane[1]);
+            reflectionMat.m20 = (- 2F * plane[2] * plane[0]);
+            reflectionMat.m21 = (- 2F * plane[2] * plane[1]);
             reflectionMat.m22 = (1F - 2F * plane[2] * plane[2]);
-            reflectionMat.m23 = (-2F * plane[3] * plane[2]);
+            reflectionMat.m23 = (- 2F * plane[3] * plane[2]);
 
             reflectionMat.m30 = 0F;
             reflectionMat.m31 = 0F;
