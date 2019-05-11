@@ -9,7 +9,7 @@ using System.Threading;
 
 public class RealtimeAttitude : MonoBehaviour {
 
-	public string recvStr;
+	private string recvStr;
 
 	private Socket socket;
 	private EndPoint serverEnd;
@@ -19,7 +19,10 @@ public class RealtimeAttitude : MonoBehaviour {
 	int recvLen = 0;
 	Thread connThread;
 
-	public RealtimeDataPacket data;
+	private RealtimeDataPacket data;
+
+	public float smoothing = 2.0f;
+	public bool enableSmoothing = true;
 
 	void Start () {
 		data = new RealtimeDataPacket();
@@ -75,9 +78,19 @@ public class RealtimeAttitude : MonoBehaviour {
 		}
 	}
 
-	void FixedUpdate () {
-        this.transform.eulerAngles = new Vector3(data.pitch, data.yaw, data.roll);
-        this.transform.position = new Vector3(data.longitude, data.altitude, data.latitude);
+	void Update () {
+		// Smoothing
+		Vector3 p;
+		Quaternion q;
+		if (enableSmoothing) {
+			p = Vector3.Lerp(this.transform.position, new Vector3(data.longitude, data.altitude, data.latitude), Time.deltaTime * smoothing);
+			q = Quaternion.Slerp(this.transform.rotation, Quaternion.Euler(data.pitch, data.yaw, data.roll), Time.deltaTime * smoothing);
+		} else {
+			p = new Vector3(data.longitude, data.altitude, data.latitude);
+			q = Quaternion.Euler(data.pitch, data.yaw, data.roll);
+		}
+        this.transform.rotation = q;
+        this.transform.position = p;
     }
 
 }
