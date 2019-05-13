@@ -25,10 +25,14 @@ public class RealtimeAttitude : MonoBehaviour {
 	public float smoothing = 2.0f;
 	public bool enableSmoothing = true;
 
+	public Vector3 angularSpeed;
+	private Vector3 _lastFrameAngular;
 	void Start () {
 		data = new RealtimeDataPacket();
 		record = new List<RealtimeDataPacket>();
 		InitSocket();
+
+		_lastFrameAngular = this.transform.rotation.eulerAngles;
 	}
 
 	private void OnApplicationQuit() {
@@ -94,6 +98,9 @@ public class RealtimeAttitude : MonoBehaviour {
 		}
         this.transform.rotation = q;
         this.transform.position = p;
+
+		angularSpeed = (this.transform.rotation.eulerAngles - _lastFrameAngular) / Time.deltaTime;
+		_lastFrameAngular = this.transform.rotation.eulerAngles;
     }
 
 }

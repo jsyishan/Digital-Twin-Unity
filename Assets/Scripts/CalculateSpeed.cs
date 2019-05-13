@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CalculateSpeed : MonoBehaviour {
 	
+	public Text speedText;
 	private bool isCalculating = false;
 	public void Calculate() {
 		isCalculating = true;
@@ -16,9 +18,10 @@ public class CalculateSpeed : MonoBehaviour {
 				RaycastHit hit;
 				if (Physics.Raycast(ray, out hit, 20.0f, LayerMask.GetMask("Boat"))) {
 					isCalculating = false;
-					Debug.Log(hit.transform.InverseTransformPoint(hit.point));
+					Debug.DrawLine(ray.origin, hit.point, Color.red, 1000.0f);
+					Debug.Log(hit.point);
 				}
-			}			
+			}
 		}
 	}
 }
