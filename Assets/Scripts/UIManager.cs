@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour {
 	public GameObject attitudePanel;
 	public Transform attitudePanelData;
 	public RealtimeAttitude boat;
+	public UnityStandardAssets.Cameras.FreeLookCam freeCamera;
 
 	private bool isMinimapEnabled = true;
 	private Text[] attitudeTexts;
