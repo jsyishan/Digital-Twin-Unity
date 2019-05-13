@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 81283674}
   - component: {fileID: 81283673}
   - component: {fileID: 81283672}
+  - component: {fileID: 81283675}
   m_Layer: 5
   m_Name: CalculateSpeed
   m_TagString: Untagged
@@ -264,7 +265,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 81283673}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 81283675}
+        m_MethodName: Calculate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &81283673
@@ -301,6 +313,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 81283670}
   m_CullTransparentMesh: 0
+--- !u!114 &81283675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 81283670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4efcc573bd6248a3ac14f6f3fc3a77c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &109601395
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,8 +618,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.28525496, y: 0.22798266, z: 0.6461587}
-  m_Center: {x: -0.12230325, y: 0.059385948, z: 0.29569244}
+  m_Size: {x: 0.27346885, y: 0.19155289, z: 0.6322296}
+  m_Center: {x: -0.119624585, y: 0.055100076, z: 0.29944256}
 --- !u!54 &216542715
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3481,6 +3504,7 @@ MonoBehaviour:
   minimap: {fileID: 1075250362}
   axis: {fileID: 1084908730}
   attitudePanel: {fileID: 1857043607}
+  operationPanel: {fileID: 1797053935}
   attitudePanelData: {fileID: 1874765187}
   boat: {fileID: 216542712}
   freeCamera: {fileID: 2046460579}
@@ -3600,8 +3624,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1889794497}
-  m_LocalRotation: {x: -0.1615637, y: 0.35385844, z: 0.06220039, w: 0.9191368}
-  m_LocalPosition: {x: -1.6009212, y: -0.806606, z: -1.3399132}
+  m_LocalRotation: {x: -0.2398872, y: 0.35602278, z: 0.09509109, w: 0.8981423}
+  m_LocalPosition: {x: -0.9056256, y: -0.96277577, z: -0.50905395}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

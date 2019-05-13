@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour {
 	public GameObject minimap;
 	public GameObject axis;
 	public GameObject attitudePanel;
+	public GameObject operationPanel;
 	public Transform attitudePanelData;
 	public RealtimeAttitude boat;
 	public UnityStandardAssets.Cameras.FreeLookCam freeCamera;
@@ -21,7 +22,9 @@ public class UIManager : MonoBehaviour {
 
 		minimap.SetActive(isMinimapEnabled);
 		axis.SetActive(isMinimapEnabled);
+
 		attitudePanel.SetActive(isMinimapEnabled);
+		operationPanel.SetActive(isMinimapEnabled);
 	}
 
 	private void Start() {

@@ -9,7 +9,7 @@ using System.Threading;
 
 public class RealtimeAttitude : MonoBehaviour {
 
-	public string recvStr;
+	private string recvStr;
 
 	private Socket socket;
 	private EndPoint serverEnd;
@@ -19,7 +19,7 @@ public class RealtimeAttitude : MonoBehaviour {
 	int recvLen = 0;
 	Thread connThread;
 
-	public RealtimeDataPacket data;
+	[HideInInspector] public RealtimeDataPacket data;
 	private List<RealtimeDataPacket> record;
 
 	public float smoothing = 2.0f;
