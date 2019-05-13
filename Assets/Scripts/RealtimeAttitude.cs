@@ -9,23 +9,25 @@ using System.Threading;
 
 public class RealtimeAttitude : MonoBehaviour {
 
-	private string recvStr;
+	public string recvStr;
 
 	private Socket socket;
 	private EndPoint serverEnd;
 	private IPEndPoint ipEnd;
-	private byte[] recvData = new byte[64];
-	private byte[] sendData = new byte[64];
+	private byte[] recvData = new byte[128];
+	private byte[] sendData = new byte[8];
 	int recvLen = 0;
 	Thread connThread;
 
-	private RealtimeDataPacket data;
+	public RealtimeDataPacket data;
+	private List<RealtimeDataPacket> record;
 
 	public float smoothing = 2.0f;
 	public bool enableSmoothing = true;
 
 	void Start () {
 		data = new RealtimeDataPacket();
+		record = new List<RealtimeDataPacket>();
 		InitSocket();
 	}
 
@@ -48,14 +50,14 @@ public class RealtimeAttitude : MonoBehaviour {
 	}
 
 	private void SocketSend(string sendStr) {
-		sendData = new byte[64];
+		sendData = new byte[8];
 		sendData = Encoding.ASCII.GetBytes(sendStr);
 		socket.SendTo(sendData, sendData.Length, SocketFlags.None, ipEnd);
 	}
 
 	private void SocketReceive() {
 		while(true) {
-			recvData = new byte[64];
+			recvData = new byte[128];
 			recvLen = socket.ReceiveFrom(recvData, ref serverEnd);
 
 			// Debug.Log("From: " + serverEnd);
@@ -63,6 +65,7 @@ public class RealtimeAttitude : MonoBehaviour {
 				recvStr = Encoding.ASCII.GetString(recvData, 0, recvLen);
 				// Debug.Log(recvStr);
 				data.setData(recvStr);
+				record.Add(new RealtimeDataPacket(data));
 				Thread.Sleep(10);
 			}
 		}

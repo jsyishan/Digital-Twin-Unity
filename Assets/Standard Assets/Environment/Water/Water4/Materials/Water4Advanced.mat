@@ -105,7 +105,7 @@ Material:
     - _FadeExp: 0.91503274
     - _FoamWaveDependency: 0.10205479
     - _FresnelPower: 1.7931035
-    - _FresnelScale: 0.58
+    - _FresnelScale: 0.69
     - _GerstnerIntensity: 1.45
     - _HeightDisplacement: 3.2722514
     - _InvFade: 0.628783
@@ -114,7 +114,7 @@ Material:
     - _NormalsDisplacement: 0
     - _ReflDistort: 0.9267696
     - _RefrDistort: 1.4393286
-    - _Shininess: 138
+    - _Shininess: 84
     - _ShoreTiling: 56.862743
     - _Speed: 0.4137931
     - _WaterDepth: 40.98077
@@ -125,7 +125,7 @@ Material:
     - WaveSpeed: {r: 1.086165, g: 4.440575, b: 12.105146, a: -3.0206447}
     - _AnimationDirection: {r: 2, g: 4, b: 2, a: -1}
     - _AnimationTiling: {r: 0.04582553, g: 0.0182, b: 0.045714468, a: 0.027129691}
-    - _BaseColor: {r: 0.24263912, g: 0.36618334, b: 0.38677406, a: 0.78431374}
+    - _BaseColor: {r: 0.34877655, g: 0.5620502, b: 0.6320754, a: 0.78431374}
     - _BumpDirection: {r: 40, g: 40, b: 40, a: -40}
     - _BumpMap_ST: {r: 1, g: 1, b: 0, a: 0}
     - _BumpTiling: {r: 0.12, g: 0.07, b: 0.08, a: 0.06}
@@ -148,7 +148,7 @@ Material:
     - _HorizonColor: {r: 0.052907113, g: 0.24486735, b: 0.2835821, a: 1}
     - _InvFadeParemeter: {r: 0.41, g: 0.16, b: 0.04310345, a: 0}
     - _MainTex_ST: {r: 1, g: 1, b: 0, a: 0}
-    - _ReflectionColor: {r: 0.121468835, g: 0.22130632, b: 0.24526733, a: 0.83137256}
+    - _ReflectionColor: {r: 0.12628046, g: 0.1503793, b: 0.16032284, a: 0.83137256}
     - _ReflectionTex_ST: {r: 1, g: 1, b: 0, a: 0}
     - _ReflectiveColorCube_ST: {r: 1, g: 1, b: 0, a: 0}
     - _ReflectiveColor_ST: {r: 1, g: 1, b: 0, a: 0}
@@ -159,7 +159,7 @@ Material:
     - _ShoreColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShorePerturbation: {r: 0, g: 0, b: 0, a: 0}
     - _ShoreTiling: {r: 1, g: 1, b: 0.1, a: 0.1}
-    - _SpecularColor: {r: 0.91791046, g: 0.91791046, b: 0.91791046, a: 1}
+    - _SpecularColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
     - _UnderwaterColor: {r: 0.6950323, g: 0.89552236, b: 0.7502397, a: 1}
     - _WaveOffset: {r: 1, g: 1, b: -0.01, a: -0.01}
     - _WaveScale4: {r: 0.1, g: 0.1, b: 0.01, a: 0.01}

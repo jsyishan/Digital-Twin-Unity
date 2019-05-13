@@ -98,7 +98,7 @@ Material:
     - _BaseColor: {r: 0.53999996, g: 0.95, b: 0.98999995, a: 0.5}
     - _BumpDirection: {r: 1, g: 1, b: -1, a: 1}
     - _BumpTiling: {r: 1, g: 1, b: -2, a: 3}
-    - _Color: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
+    - _Color: {r: 0.9027234, g: 0.92039573, b: 0.9245283, a: 1}
     - _DistortParams: {r: 1, g: 1, b: 2, a: 1.15}
     - _EmissionColor: {r: 2.1629517, g: 0.31864917, b: 0.31864917, a: 1}
     - _Foam: {r: 0.1, g: 0.375, b: 0, a: 0}
