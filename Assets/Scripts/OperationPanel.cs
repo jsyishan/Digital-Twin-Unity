@@ -10,6 +10,7 @@ public class OperationPanel : MonoBehaviour {
 
 
 	private bool _track = false;
+	public GameObject trail;
 
 	public void SwitchView() {
 		cameraManager.SwitchViews();
@@ -17,7 +18,8 @@ public class OperationPanel : MonoBehaviour {
 	}
 	
 	public void ShowTrack() {
-
+		_track = !_track;
+		trail.SetActive(_track);
 	}
 
 	public void LockCamera() {

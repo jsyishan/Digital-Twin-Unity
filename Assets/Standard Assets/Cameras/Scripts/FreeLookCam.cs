@@ -22,6 +22,13 @@ namespace UnityStandardAssets.Cameras
         [SerializeField] private bool m_LockCursor = false;                   // Whether the cursor should be hidden and locked.
         [SerializeField] private bool m_VerticalAutoReturn = false;           // set wether or not the vertical axis should auto return
 
+        [SerializeField] private float m_ScaleMax = 120.0f;
+        [SerializeField] private float m_ScaleMin = 60.0f;
+        [SerializeField] private float m_ScaleSpeed = 2.0f;
+        [SerializeField] private float m_ScaleSmoothing = 10.0f;
+        private float m_currentScale;
+        
+
         private float m_LookAngle;                    // The rig's y axis rotation.
         private float m_TiltAngle;                    // The pivot's x axis rotation.
         private const float k_LookDistance = 100f;    // How far in front of the pivot the character's look target is.
@@ -39,6 +46,8 @@ namespace UnityStandardAssets.Cameras
 
 	        m_PivotTargetRot = m_Pivot.transform.localRotation;
 			m_TransformTargetRot = transform.localRotation;
+
+            m_currentScale = Camera.main.fieldOfView;
         }
 
 
@@ -50,6 +59,11 @@ namespace UnityStandardAssets.Cameras
                 Cursor.lockState = m_LockCursor ? CursorLockMode.Locked : CursorLockMode.None;
                 Cursor.visible = !m_LockCursor;
             }
+
+            // m_currentScale += Input.GetAxis("Mouse ScrollWheel") * m_ScaleSpeed;
+            m_currentScale = Mathf.Lerp(m_currentScale, m_currentScale + Input.GetAxis("Mouse ScrollWheel") * m_ScaleSpeed, Time.deltaTime * m_ScaleSmoothing);
+            m_currentScale = Mathf.Clamp(m_currentScale, m_ScaleMin, m_ScaleMax);
+            Camera.main.fieldOfView = m_currentScale;
         }
 
 
