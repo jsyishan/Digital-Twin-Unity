@@ -27,7 +27,7 @@ public class InputHandler : MonoBehaviour {
 			uiManager.switchMinimap();
 		}
 
-		if (Input.GetKeyDown(KeyCode.L)) {
+		if (Input.GetKeyDown(KeyCode.R)) {
 			isStoppingFreeCameraRotation = !isStoppingFreeCameraRotation;
 			if (isStoppingFreeCameraRotation) {
 				uiManager.freeCamera.m_TurnSpeed = 0.0f;
