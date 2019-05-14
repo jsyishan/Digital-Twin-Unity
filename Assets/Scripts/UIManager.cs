@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour {
 	public RealtimeAttitude boat;
 	public UnityStandardAssets.Cameras.FreeLookCam freeCamera;
 
+	public GameObject backToMainButton;
+
 	private bool isMinimapEnabled = true;
 	private Text[] attitudeTexts;
 
@@ -21,6 +23,7 @@ public class UIManager : MonoBehaviour {
 
 		minimap.SetActive(isMinimapEnabled);
 		axis.SetActive(isMinimapEnabled);
+		backToMainButton.SetActive(!isMinimapEnabled);
 
 		attitudePanel.SetActive(isMinimapEnabled);
 		operationPanel.SetActive(isMinimapEnabled);

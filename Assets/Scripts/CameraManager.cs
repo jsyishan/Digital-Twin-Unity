@@ -8,16 +8,16 @@ public class CameraManager : MonoBehaviour {
 	public Camera topCamera;
 	public Camera backCamera;
 	public Camera mainCamera;
+	public UIManager uiManager;
 
 	private bool isSingleView = true;
-	void Start () {
+	private bool isStoppingFreeCameraRotation = false;
+	private float freeCameraTurnSpeed;
 
+	private void Start() {
+		freeCameraTurnSpeed = uiManager.freeCamera.m_TurnSpeed;
 	}
 	
-
-	void Update () {
-	}
-
 	public void SwitchViews() {
 		if (isSingleView) {
 			mainCamera.rect = new Rect(0.5f, 0.0f, 0.5f, 0.5f);
@@ -29,5 +29,14 @@ public class CameraManager : MonoBehaviour {
 		topCamera.enabled  = isSingleView;
 		backCamera.enabled = isSingleView;
 		isSingleView = !isSingleView;
+	}
+
+	public void LockFreeCamera() {
+			isStoppingFreeCameraRotation = !isStoppingFreeCameraRotation;
+			if (isStoppingFreeCameraRotation) {
+				uiManager.freeCamera.m_TurnSpeed = 0.0f;
+			} else {
+				uiManager.freeCamera.m_TurnSpeed = freeCameraTurnSpeed;
+			}
 	}
 }

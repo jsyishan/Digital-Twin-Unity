@@ -3,14 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class OperationPanel : MonoBehaviour {
+	
 
-	// Use this for initialization
-	void Start () {
-		
+	public CameraManager cameraManager;
+	public UIManager uiManager;
+
+
+	private bool _track = false;
+
+	public void SwitchView() {
+		cameraManager.SwitchViews();
+		uiManager.switchMinimap();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	public void ShowTrack() {
+
+	}
+
+	public void LockCamera() {
+		cameraManager.LockFreeCamera();
+	}
+
+	public void BackToMain() {
+		cameraManager.SwitchViews();
+		uiManager.switchMinimap();
 	}
 }

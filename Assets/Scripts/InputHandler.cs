@@ -28,12 +28,7 @@ public class InputHandler : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown(KeyCode.R)) {
-			isStoppingFreeCameraRotation = !isStoppingFreeCameraRotation;
-			if (isStoppingFreeCameraRotation) {
-				uiManager.freeCamera.m_TurnSpeed = 0.0f;
-			} else {
-				uiManager.freeCamera.m_TurnSpeed = freeCameraTurnSpeed;
-			}
+			cameraManager.LockFreeCamera();
 		}
 	}
 }
