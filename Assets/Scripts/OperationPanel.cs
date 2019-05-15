@@ -8,9 +8,10 @@ public class OperationPanel : MonoBehaviour {
 	public CameraManager cameraManager;
 	public UIManager uiManager;
 
+	public GameObject trail;
+	public RenderTexture minimapTexture;
 
 	private bool _track = false;
-	public GameObject trail;
 
 	public void SwitchView() {
 		cameraManager.SwitchViews();
@@ -29,5 +30,13 @@ public class OperationPanel : MonoBehaviour {
 	public void BackToMain() {
 		cameraManager.SwitchViews();
 		uiManager.switchMinimap();
+	}
+
+	public void SwitchMinimap() {
+		if (!cameraManager.minimapCamera.targetTexture) {
+			cameraManager.minimapCamera.targetTexture = minimapTexture;
+		} else {
+			cameraManager.minimapCamera.targetTexture = null;
+		}
 	}
 }

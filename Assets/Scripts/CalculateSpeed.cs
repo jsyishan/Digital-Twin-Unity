@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CalculateSpeed : MonoBehaviour {
 	
-	public Text speedText;
+	public Text[] speedTexts;
 	public GameObject pointPrefab;
 	private bool isCalculating = false;
 
@@ -18,7 +18,9 @@ public class CalculateSpeed : MonoBehaviour {
 
 	public void Cancel() {
 		isCalculating = false;
-		speedText.text = "";
+		for (int i = 0; i < speedTexts.Length; i++) {
+			speedTexts[i].text = "";
+		}
 		Destroy(point);
 		point = null;
 	}
@@ -47,8 +49,14 @@ public class CalculateSpeed : MonoBehaviour {
 
 		if (point) {
 			Vector3 dir = point.transform.position - point.transform.parent.position;
-			float v = boatAttitude.data.speed + (boatAttitude.angularSpeed.y * dir).magnitude;
-			speedText.text = System.Math.Round(v, 2).ToString();
+			float[] v = {
+				(boatAttitude.angularSpeed.x * dir).magnitude,
+				(boatAttitude.angularSpeed.z * dir).magnitude,
+				boatAttitude.data.speed + (boatAttitude.angularSpeed.y * dir).magnitude,
+			};
+			for(int i = 0; i < speedTexts.Length; i++) {
+				speedTexts[i].text = System.Math.Round(v[i], 2).ToString() + "  m/s";
+			}
 		}
 	}
 }

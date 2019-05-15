@@ -8,6 +8,7 @@ public class CameraManager : MonoBehaviour {
 	public Camera topCamera;
 	public Camera backCamera;
 	public Camera mainCamera;
+	public Camera minimapCamera;
 	public UIManager uiManager;
 
 	private bool isSingleView = true;

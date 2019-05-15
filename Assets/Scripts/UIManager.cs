@@ -39,18 +39,18 @@ public class UIManager : MonoBehaviour {
 
 	private void Update() {
 		if(attitudePanel != null && boat != null) {
-			attitudeTexts[0].text = System.Math.Round(boat.data.roll, 2).ToString();
-			attitudeTexts[1].text = System.Math.Round(boat.data.pitch, 2).ToString();
-			attitudeTexts[2].text = System.Math.Round(boat.data.yaw, 2).ToString();
+			attitudeTexts[0].text = System.Math.Round(boat.data.roll, 2).ToString() + "  deg";
+			attitudeTexts[1].text = System.Math.Round(boat.data.pitch, 2).ToString() + "  deg";
+			attitudeTexts[2].text = System.Math.Round(boat.data.yaw, 2).ToString() + "  deg";
 
-			attitudeTexts[3].text = System.Math.Round(boat.angularSpeed.z, 2).ToString();
-			attitudeTexts[4].text = System.Math.Round(boat.angularSpeed.x, 2).ToString();
-			attitudeTexts[5].text = System.Math.Round(boat.angularSpeed.y, 2).ToString();
+			attitudeTexts[3].text = System.Math.Round(boat.angularSpeed.z, 2).ToString() + "  deg/s";
+			attitudeTexts[4].text = System.Math.Round(boat.angularSpeed.x, 2).ToString() + "  deg/s";
+			attitudeTexts[5].text = System.Math.Round(boat.angularSpeed.y, 2).ToString() + "  deg/s";
 
 			attitudeTexts[6].text = System.Math.Round(boat.data.longitude, 2).ToString();
 			attitudeTexts[7].text = System.Math.Round(boat.data.altitude, 2).ToString();
 			attitudeTexts[8].text = System.Math.Round(boat.data.latitude, 2).ToString();
-			attitudeTexts[9].text = System.Math.Round(boat.data.speed, 2).ToString();
+			attitudeTexts[9].text = System.Math.Round(boat.data.speed, 2).ToString() + "  m/s";
 		}
 	}
 }
