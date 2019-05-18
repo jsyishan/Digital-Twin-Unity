@@ -664,7 +664,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 216542711}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7711b9eef71134ca88a3058a41acf13b, type: 3}
   m_Name: 
@@ -5655,6 +5655,8 @@ MonoBehaviour:
   uiManager: {fileID: 1860377789}
   trail: {fileID: 773886241}
   minimapTexture: {fileID: 8600000, guid: e6ab0713b92ca414b8764ee858dfcd07, type: 2}
+  freeCameraTexture: {fileID: 8600000, guid: ec21608b24aea46f3a0c3bdfb5b038bc, type: 2}
+  minimapImage: {fileID: 690875902}
 --- !u!114 &1797053940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6002,6 +6004,7 @@ MonoBehaviour:
   axis: {fileID: 1084908730}
   attitudePanel: {fileID: 1857043607}
   operationPanel: {fileID: 1797053935}
+  calculationPanel: {fileID: 509451488}
   boat: {fileID: 216542712}
   freeCamera: {fileID: 2046460579}
   backToMainButton: {fileID: 768761821}

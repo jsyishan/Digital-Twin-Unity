@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class OperationPanel : MonoBehaviour {
 	
 
@@ -10,6 +10,8 @@ public class OperationPanel : MonoBehaviour {
 
 	public GameObject trail;
 	public RenderTexture minimapTexture;
+	public RenderTexture freeCameraTexture;
+	public RawImage minimapImage;
 
 	private bool _track = false;
 
@@ -35,8 +37,12 @@ public class OperationPanel : MonoBehaviour {
 	public void SwitchMinimap() {
 		if (!cameraManager.minimapCamera.targetTexture) {
 			cameraManager.minimapCamera.targetTexture = minimapTexture;
+			cameraManager.mainCamera.targetTexture = null;
+			minimapImage.texture = minimapTexture;
 		} else {
+			cameraManager.mainCamera.targetTexture = freeCameraTexture;
 			cameraManager.minimapCamera.targetTexture = null;
+			minimapImage.texture = freeCameraTexture;
 		}
 	}
 }

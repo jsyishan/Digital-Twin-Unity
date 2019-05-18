@@ -25,7 +25,7 @@ public class RealtimeAttitude : MonoBehaviour {
 	public float smoothing = 2.0f;
 	public bool enableSmoothing = true;
 
-	public Vector3 angularSpeed;
+	[HideInInspector]public Vector3 angularSpeed;
 	private Vector3 _lastFrameAngular;
 	void Start () {
 		data = new RealtimeDataPacket();
@@ -40,7 +40,7 @@ public class RealtimeAttitude : MonoBehaviour {
 	}
 
 	private void InitSocket() {
-		ipEnd = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 23333);
+		// ipEnd = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 23333);
 		socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
 		IPEndPoint sender = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 6666);
@@ -53,11 +53,11 @@ public class RealtimeAttitude : MonoBehaviour {
 		
 	}
 
-	private void SocketSend(string sendStr) {
-		sendData = new byte[8];
-		sendData = Encoding.ASCII.GetBytes(sendStr);
-		socket.SendTo(sendData, sendData.Length, SocketFlags.None, ipEnd);
-	}
+	// private void SocketSend(string sendStr) {
+	// 	sendData = new byte[8];
+	// 	sendData = Encoding.ASCII.GetBytes(sendStr);
+	// 	socket.SendTo(sendData, sendData.Length, SocketFlags.None, ipEnd);
+	// }
 
 	private void SocketReceive() {
 		while(true) {
